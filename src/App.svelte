@@ -1,30 +1,42 @@
 <script>
-	export let name;
+import {writableArray} from './store.js';
+let count = 0;
+let type = '';
+let types = [];
+
+const addToArray = () => {
+	$writableArray = [...$writableArray,type ];
+}
+function handleSubmit(){
+	console.log("handle submit");
+	return false;
+}
+
+const handleKeyup = ()  =>{
+	console.log("key up");
+	if(event.code  == 'Enter') {
+		event.preventDefault();
+		addToArray();
+		type ='';
+		return false;
+	}
+}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+<h1>1000 times allah</h1>
+<form on:submit|preventDefault={handleSubmit}>
+
+<input type="text" name="times" bind:value={type} 
+	on:keyup|preventDefault={handleKeyup}>
+</form>
+<div class="board">
+Count: {$writableArray.length}
+{#each $writableArray as type, index}
+	<div>{index+1 } {type}</div>
+{/each}
+</div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>
