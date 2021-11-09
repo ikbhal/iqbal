@@ -28,6 +28,7 @@ const handleKeyup = ()  =>{
 <form on:submit|preventDefault={handleSubmit}>
 
 <input type="text" name="times" bind:value={type} 
+	autocomplete="off"
 	on:keyup|preventDefault={handleKeyup}>
 </form>
 <div class="board">
